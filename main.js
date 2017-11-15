@@ -224,11 +224,11 @@ $(document).ready(function() {
      if (repetition < 3){
     while (k--) {
       if (arr1[k] !== arr2[k]) {
+        repeat();
         console.log("NO!");
-        repetition++;
         setTimeout(function() {
         $(".error").show().text("Try again!");
-        }, 200);
+        }, 400);
         var sound4 = document.getElementById("fail");
         sound4.volume = 0.5;
         sound4.play();
@@ -239,12 +239,13 @@ $(document).ready(function() {
       } else {
         matchArrEasy.push(1);
         console.log(matchArrEasy+ " matchArr");
-        repetition = 1;
       }
     }
      } else if (repetition >= 3){
+       setTimeout(function() {
+        $(".error").show().text("Game Over!");
+        }, 400);
        compare(AIArray, playerMoves);
-       repetition = 1;
     } 
     check(arr1, matchArrEasy);
   }
@@ -294,6 +295,12 @@ $(document).ready(function() {
   }
   }
   
+   //error repetition//
+  
+  function repeat(){
+    repetition++;
+    console.log(repetition + " repetition update");
+  }
   
   
   
