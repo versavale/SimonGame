@@ -4,7 +4,6 @@ $(document).ready(function() {
     .show()
     .text("PRESS START TO PLAY");
   $(".onoffswitch").show();
-  
   var playerMoves = [];
   var tempVal;
   var AIArray = [];
@@ -12,7 +11,7 @@ $(document).ready(function() {
   var gameMode = true;
   var repetition = 1;
 
-  //starting the game//
+  //starting the game creates an array with 20 AI move//
   $("#start").click(function() {
       mode();
     $(".error").hide();
@@ -30,9 +29,7 @@ $(document).ready(function() {
     playerMoves = []; 
   });
 
-
-//reset the game at any moment by pressing the reset button//
-$("#reset").click(function() {
+  $("#reset").click(function() {
     reset();
   });
 
@@ -127,7 +124,7 @@ $("#reset").click(function() {
 
   //AI plays GREEN = 1//
   function AIplays1() {
-    var time1 = 500;
+    var time1 = 400;
     var bg = $("#one").css("background");
     $("#one").css("background", "#13ff7c");
     setTimeout(function() {
@@ -139,7 +136,7 @@ $("#reset").click(function() {
 
   //AI plays RED = 2//
   function AIplays2() {
-    var time2 = 500;
+    var time2 = 400;
     var bg2 = $("#two").css("background");
     $("#two").css("background", "#ff4c4c");
     setTimeout(function() {
@@ -151,7 +148,7 @@ $("#reset").click(function() {
 
   //AI plays YELLOW = 3//
   function AIplays3() {
-    var time3 = 500;
+    var time3 = 400;
     var bg3 = $("#three").css("background");
     $("#three").css("background", "#fed93f");
     setTimeout(function() {
@@ -163,7 +160,7 @@ $("#reset").click(function() {
 
   //AI plays BLUE = 4//
   function AIplays4() {
-    var time4 = 500;
+    var time4 = 400;
     var bg4 = $("#four").css("background");
     $("#four").css("background", "#1c8cff");
     setTimeout(function() {
@@ -187,13 +184,12 @@ $("#reset").click(function() {
           } else if (arr[i] === "4") {
             AIplays4();
           }
-        }, 800 * i);
+        }, 700 * i);
       })(i);
     }
   }
 
   //Comparing the two arrays - move by move AND final check to produce new array add-on//
-  //STRICT MODE//
   function compare(arr1, arr2) {
     var matchArr = [];
     var i = arr1.length; //I need this to stop the loop
@@ -217,6 +213,7 @@ $("#reset").click(function() {
     }
     check(arr1, matchArr);
   }
+  
   
   //compare easy mode//
    function compareEasy(arr1, arr2) {
@@ -253,7 +250,7 @@ $("#reset").click(function() {
   }
 
 
-  //Array check that moves to the next level//
+  
   function check(arr, match) {
     if (arr.length === match.length) {
       if (match.indexOf(2) === -1) {
@@ -266,7 +263,7 @@ $("#reset").click(function() {
   }
 
   
-  //reset either via reset button or after game over//
+  //you can stop the game at any time (except when simon is playing)//
   function reset() {
     $(".error").hide();
     $(".counter")
@@ -285,7 +282,7 @@ $("#reset").click(function() {
     repetition = 1;
   }
 
-  //switch between strict and easy mode//
+  //switch implementation//
   
   function mode(){
     if($(".onoffswitch-checkbox").prop('checked') === true){
@@ -296,5 +293,9 @@ $("#reset").click(function() {
     console.log(gameMode);
   }
   }
-
+  
+  
+  
+  
+  //very end do not delete//
 });
