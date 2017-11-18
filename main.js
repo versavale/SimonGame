@@ -1,37 +1,56 @@
 $(document).ready(function() {
+  intro();
   $(".error").hide();
-  $(".counter")
+  $(".lvl-box")
     .show()
-    .text("PRESS START TO PLAY");
+    .text("Level - -");
   $(".onoffswitch").show();
+
   var playerMoves = [];
   var tempVal;
   var AIArray = [];
   var counter = 0;
   var gameMode = true;
   var repetition = 1;
+  var click = true;
 
+  ///BUTTONS///
   //starting the game creates an array with 20 AI move//
   $("#start").click(function() {
-      mode();
-    $(".error").hide();
-    $(".onoffswitch").hide();
-    counter++;
-    $(".counter")
-      .show()
-      .text("LEVEL " + counter);
-    console.log(counter);
-    randomMoves();
-    console.log(AIArray + " AIArray");
-    setTimeout(function() {
-      animate(AIArray);
-    }, 500);
-    playerMoves = []; 
+    mode();
+    console.log(counter + " counter");
+    if (counter === 20) {
+      win();
+    } else {
+      $(".error").hide();
+      counter++;
+      $(".lvl-box")
+        .show()
+        .css("background-color", "black")
+        .text("Level " + counter);
+      randomMoves();
+      console.log(AIArray + " AIArray");
+      setTimeout(function() {
+        animate(AIArray);
+      }, 500);
+      playerMoves = [];
+    }
   });
 
   $("#reset").click(function() {
     reset();
   });
+
+  //switch implementation//
+  function mode() {
+    if ($(".onoffswitch-checkbox").prop("checked") === true) {
+      gameMode = true;
+      console.log(gameMode);
+    } else {
+      gameMode = false;
+      console.log(gameMode);
+    }
+  }
 
   //___________________PLAYER___________________//
 
@@ -39,78 +58,70 @@ $(document).ready(function() {
   function playerClicks() {
     playerMoves.push(tempVal);
     console.log(playerMoves + " playermoves");
- if (gameMode === true){   
-    compare(AIArray, playerMoves);
- } else {
-    compareEasy(AIArray, playerMoves);
- }
+    if (gameMode === true) {
+      compare(AIArray, playerMoves);
+    } else {
+      compareEasy(AIArray, playerMoves);
+    }
     tempVal = "";
     stopMoves(playerMoves);
   }
 
   //player clicks GREEN = 1//
   $("#one").click(function() {
-    var time1p = 500;
+    var time1p = 100;
     var bg = $("#one").css("background");
     $("#one").css("background", "#13ff7c");
     setTimeout(function() {
       $("#one").css("background", bg);
+      var sound = document.getElementById("1-au");
+      sound.play();
     }, time1p);
     tempVal = $(this).attr("value");
     playerClicks();
-    var sound = document.getElementById("1-au");
-    sound.play();
   });
 
   //player clicks RED = 2//
   $("#two").click(function() {
-    var time2p = 500;
+    var time2p = 100;
     var bg2 = $("#two").css("background");
     $("#two").css("background", "#ff4c4c");
     setTimeout(function() {
       $("#two").css("background", bg2);
+      var sound = document.getElementById("2-au");
+      sound.play();
     }, time2p);
     tempVal = $(this).attr("value");
     playerClicks();
-    var sound = document.getElementById("2-au");
-    sound.play();
   });
 
   //player clicks YELLOW = 3//
   $("#three").click(function() {
-    var time3p = 500;
+    var time3p = 100;
     var bg3 = $("#three").css("background");
     $("#three").css("background", "#fed93f");
     setTimeout(function() {
       $("#three").css("background", bg3);
+      var sound = document.getElementById("3-au");
+      sound.play();
     }, time3p);
     tempVal = $(this).attr("value");
     playerClicks();
-    var sound = document.getElementById("3-au");
-    sound.play();
   });
 
   //player clicks BLUE = 4//
   $("#four").click(function() {
-    var time4p = 500;
+    var time4p = 100;
     var bg4 = $("#four").css("background");
     $("#four").css("background", "#1c8cff");
     setTimeout(function() {
       $("#four").css("background", bg4);
+      var sound = document.getElementById("4-au");
+      sound.play();
     }, time4p);
     tempVal = $(this).attr("value");
     playerClicks();
-    var sound = document.getElementById("4-au");
-    sound.play();
   });
-
-  //Cannot keep clicking when reaching 20 moves//
-  function stopMoves(moves) {
-    if (playerMoves.length === 20) {
-      $(".block").off("click");
-      console.log("stopped");
-    }
-  }
 
   //__________________SIMON_______________//
 
@@ -124,50 +135,50 @@ $(document).ready(function() {
 
   //AI plays GREEN = 1//
   function AIplays1() {
-    var time1 = 400;
+    var time1 = 200;
     var bg = $("#one").css("background");
     $("#one").css("background", "#13ff7c");
     setTimeout(function() {
       $("#one").css("background", bg);
+      var sound1 = document.getElementById("1-au");
+      sound1.play();
     }, time1);
-    var sound1 = document.getElementById("1-au");
-    sound1.play();
   }
 
   //AI plays RED = 2//
   function AIplays2() {
-    var time2 = 400;
+    var time2 = 200;
     var bg2 = $("#two").css("background");
     $("#two").css("background", "#ff4c4c");
     setTimeout(function() {
       $("#two").css("background", bg2);
+      var sound2 = document.getElementById("2-au");
+      sound2.play();
     }, time2);
-    var sound2 = document.getElementById("2-au");
-    sound2.play();
   }
 
   //AI plays YELLOW = 3//
   function AIplays3() {
-    var time3 = 400;
+    var time3 = 200;
     var bg3 = $("#three").css("background");
     $("#three").css("background", "#fed93f");
     setTimeout(function() {
       $("#three").css("background", bg3);
+      var sound3 = document.getElementById("3-au");
+      sound3.play();
     }, time3);
-    var sound3 = document.getElementById("3-au");
-    sound3.play();
   }
 
   //AI plays BLUE = 4//
   function AIplays4() {
-    var time4 = 400;
+    var time4 = 200;
     var bg4 = $("#four").css("background");
     $("#four").css("background", "#1c8cff");
     setTimeout(function() {
       $("#four").css("background", bg4);
+      var sound4 = document.getElementById("4-au");
+      sound4.play();
     }, time4);
-    var sound4 = document.getElementById("4-au");
-    sound4.play();
   }
 
   //AI plays its moves//
@@ -199,9 +210,9 @@ $(document).ready(function() {
       if (arr1[x] !== arr2[x]) {
         console.log("NO!");
         $(".error").show();
-        $(".counter").hide();
+        $(".lvl-box").css("background-color", "red");
         var sound4 = document.getElementById("fail");
-        sound4.volume = 0.5;
+        sound4.volume = 0.1;
         sound4.play();
         setTimeout(function() {
           reset();
@@ -213,45 +224,43 @@ $(document).ready(function() {
     }
     check(arr1, matchArr);
   }
-  
-  
+
   //compare easy mode//
-   function compareEasy(arr1, arr2) {
+  function compareEasy(arr1, arr2) {
     var matchArrEasy = [];
     var j = arr1.length; //I need this to stop the loop
     var k = arr2.length;
 
-     if (repetition < 3){
-    while (k--) {
-      if (arr1[k] !== arr2[k]) {
-        repeat();
-        console.log("NO!");
-        setTimeout(function() {
-        $(".error").show().text("Try again!");
-        }, 400);
-        var sound4 = document.getElementById("fail");
-        sound4.volume = 0.5;
-        sound4.play();
-        setTimeout(function() {
-          animate(AIArray);
-        }, 1000);
-        playerMoves = [];
-      } else {
-        matchArrEasy.push(1);
-        console.log(matchArrEasy+ " matchArr");
+    if (repetition === 15) {
+      compare(AIArray, playerMoves);
+    } else {
+      while (k--) {
+        if (arr1[k] !== arr2[k]) {
+          console.log("NO!");
+          setTimeout(function() {
+            $(".error")
+              .show()
+              .css("color", "red")
+              .text("Try again!");
+          }, 400);
+          var sound4 = document.getElementById("fail");
+          sound4.volume = 0.1;
+          sound4.play();
+          setTimeout(function() {
+            animate(AIArray);
+            repetition++;
+            console.log(repetition + " repetition update");
+          }, 1000);
+          playerMoves = [];
+        } else {
+          matchArrEasy.push(1);
+          console.log(matchArrEasy + " matchArr");
+        }
       }
     }
-     } else if (repetition >= 3){
-       setTimeout(function() {
-        $(".error").show().text("Game Over!");
-        }, 400);
-       compare(AIArray, playerMoves);
-    } 
     check(arr1, matchArrEasy);
   }
 
-
-  
   function check(arr, match) {
     if (arr.length === match.length) {
       if (match.indexOf(2) === -1) {
@@ -263,13 +272,12 @@ $(document).ready(function() {
     }
   }
 
-  
   //you can stop the game at any time (except when simon is playing)//
   function reset() {
-    $(".error").hide();
-    $(".counter")
+    $(".error")
       .show()
-      .text("PRESS START TO PLAY");
+      .css("color", "black")
+      .text("PRESS PLAY TO START");
     $(".onoffswitch").show();
     $("#one").css("background", "#00a74a");
     $("#two").css("background", "#9f0f17");
@@ -283,26 +291,37 @@ $(document).ready(function() {
     repetition = 1;
   }
 
-  //switch implementation//
-  
-  function mode(){
-    if($(".onoffswitch-checkbox").prop('checked') === true){
-      gameMode = true;
-      console.log(gameMode);
-  } else {
-    gameMode = false;
-    console.log(gameMode);
+  // function intro//
+  function intro() {
+    setTimeout(function() {
+      AIplays1();
+    }, 400);
+    setTimeout(function() {
+      AIplays4();
+    }, 400);
+    setTimeout(function() {
+      AIplays2();
+    }, 800);
+    setTimeout(function() {
+      AIplays3();
+    }, 800);
   }
+
+  function win() {
+    $(".error")
+      .css("color", "green")
+      .show()
+      .text("YOU WON!");
+    $(".lvl-box").css("background-color", "green");
+    var sound5 = document.getElementById("win");
+    sound5.volume = 0.5;
+    sound5.play();
+    setTimeout(function() {
+      reset();
+    }, 7000);
+    playerMoves = [];
   }
-  
-   //error repetition//
-  
-  function repeat(){
-    repetition++;
-    console.log(repetition + " repetition update");
-  }
-  
-  
-  
+
   //very end do not delete//
 });
+
