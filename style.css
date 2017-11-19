@@ -2,12 +2,11 @@ body{
   background-color: #fcfcfc;
 }
 .container {
-  margin: 0 auto;
-  margin-top: 10px;
+  margin-left: 0 auto;
+  width:360px; /* or whatever width you want. */
+  max-width:360px; /* or whatever width you want. */
   margin-bottom: 30px;
-  width: 360px;
   border: 5px solid black;
-//  background-color: #ecaded;
  background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAPklEQVQoU2NkIAIwElJz45nkf7yKnnlK/pfa/pyRoEkgm7AqAlmhIfUcLoehCGYFsltJsw7dCgyTsFmBrAgAaksW4JM4Gb8AAAAASUVORK5CYII=);
 }
 
@@ -27,34 +26,28 @@ body{
 }
 
 .error {
+  position: fixed;
   text-align: center;
   font-size: 20px;
   font-family: 'Lato', sans-serif;
   font-weight: 900;
   color: red;
   border: 1px solid black;
-  width: 80%;
-  margin: 0 auto;
+  width: 280px;
+  margin-left: 20px;
   margin-top: 20px;
   background-color: white;
   box-shadow: 2px 2px 2px #565256;
 }
 
-.counter {
-  text-align: center;
-  font-size: 20px;
-  margin-top: 20px;
-  font-family: 'Lato', sans-serif;
-  font-weight: 900;
-}
-
 .lvl-box {
+  position: absolute;
   width: 90px;
   height: 28px;
   background-color: black;
   float: right;
-  margin-top: -36px;
-  margin-right: 62px;
+  margin-top: -33px;
+  margin-left: 168px;
   box-shadow: 2px 2px 2px #565256;
   font-size: 13px; 
   color: white; 
