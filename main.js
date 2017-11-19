@@ -1,6 +1,7 @@
 $(document).ready(function() {
   intro();
   $(".error").hide();
+  $("#start-fake").hide();
   $(".lvl-box")
     .show()
     .text("LEVEL - -");
@@ -18,6 +19,8 @@ $(document).ready(function() {
   //starting the game creates an array with 20 AI move//
   $("#start").click(function() {
     mode();
+    $("#start").hide();
+    $("#start-fake").show();
     console.log(counter + " counter");
     if (counter === 20) {
       win();
@@ -278,6 +281,8 @@ $(document).ready(function() {
       .css("color", "black")
       .text("PRESS PLAY TO START");
     $(".onoffswitch").show();
+    $("#start-fake").hide();
+    $("#start").show();
     $("#one").css("background", "#00a74a");
     $("#two").css("background", "#9f0f17");
     $("#three").css("background", "#cca707");
