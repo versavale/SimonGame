@@ -152,8 +152,24 @@ body{
   line-height: 9px;
 }
 
+#start-fake {
+  border: 2px solid grey;
+  box-shadow: 2px 2px 2px #565256;
+  background: grey;
+  color: white;
+  margin-left:4px;
+  border-radius: 0px;
+  width: 90px;
+  height: 28px;
+  font-size: 13px; 
+  font-family: 'Lato', sans-serif;
+  text-align: center;
+  line-height: 9px;
+}
+
 #start:active {
-    background: #1c8cff; 
+    background: white;
+  color: black; 
 }
 
 #reset {
@@ -171,10 +187,11 @@ body{
   line-height: 9px;
 }
 
-
 #reset:active {
-    background: #1c8cff; 
+      background: white;
+  color: black;
 }
+
 
 .onoffswitch {
     position: relative;
