@@ -3,7 +3,7 @@ $(document).ready(function() {
   $(".error").hide();
   $(".lvl-box")
     .show()
-    .text("Level - -");
+    .text("LEVEL - -");
   $(".onoffswitch").show();
 
   var playerMoves = [];
@@ -27,7 +27,7 @@ $(document).ready(function() {
       $(".lvl-box")
         .show()
         .css("background-color", "black")
-        .text("Level " + counter);
+        .text("LEVEL " + counter);
       randomMoves();
       console.log(AIArray + " AIArray");
       setTimeout(function() {
@@ -240,8 +240,7 @@ $(document).ready(function() {
           setTimeout(function() {
             $(".error")
               .show()
-              .css("color", "red")
-              .text("Try again!");
+              .text("TRY AGAIN!");
           }, 400);
           var sound4 = document.getElementById("fail");
           sound4.volume = 0.1;
@@ -283,6 +282,7 @@ $(document).ready(function() {
     $("#two").css("background", "#9f0f17");
     $("#three").css("background", "#cca707");
     $("#four").css("background", "#094a8f");
+    $(".lvl-box").text("LEVEL - -");
     AIArray = [];
     playerMoves = [];
     tempVal;
@@ -324,4 +324,3 @@ $(document).ready(function() {
 
   //very end do not delete//
 });
-
